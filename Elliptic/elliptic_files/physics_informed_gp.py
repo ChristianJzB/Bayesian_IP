@@ -423,15 +423,15 @@ class PIGP:
 
         self.device = device
         # Training data
-        self.parameters_data = torch.tensor(data_training["parameters_data"], dtype=torch.float64)
-        self.solutions_data = torch.tensor(data_training["solutions_data"], dtype=torch.float64)
-        self.x_sol_data = torch.tensor(data_training["x_solutions_data"], dtype=torch.float64)
+        self.parameters_data = torch.tensor(data_training["parameters_data"], dtype=torch.float64,device=self.device)
+        self.solutions_data = torch.tensor(data_training["solutions_data"], dtype=torch.float64,device=self.device)
+        self.x_sol_data = torch.tensor(data_training["x_solutions_data"], dtype=torch.float64,device=self.device)
 
-        self.x_bc = torch.tensor(data_training["x_bc"], dtype=torch.float64)
-        self.y_bc = torch.tensor(data_training["y_bc"], dtype=torch.float64)
+        self.x_bc = torch.tensor(data_training["x_bc"], dtype=torch.float64,device=self.device)
+        self.y_bc = torch.tensor(data_training["y_bc"], dtype=torch.float64,device=self.device)
 
-        self.source_func_x = torch.tensor(data_training["source_func_x"], dtype=torch.float64)
-        self.source_func_f_x = torch.tensor(data_training["source_func_f_x"], dtype=torch.float64)
+        self.source_func_x = torch.tensor(data_training["source_func_x"], dtype=torch.float64,device=self.device)
+        self.source_func_f_x = torch.tensor(data_training["source_func_f_x"], dtype=torch.float64,device=self.device)
 
         self.n_parameter_obs = self.parameters_data.shape[0]
         self.parameter_dim = self.parameters_data.shape[-1]
@@ -546,7 +546,7 @@ class PIGP:
         bottom = torch.cat([Kuf.T, Kgf.T, Kff], dim=1)
         cov = torch.cat([top, middle, bottom], dim=0)
 
-        return cov + self.reg_matrix * torch.eye(cov.shape[0], dtype=torch.float64),kuu,kug
+        return cov + self.reg_matrix * torch.eye(cov.shape[0], dtype=torch.float64, device=self.device),kuu,kug
     
     def g_training(self):
         y_bc_n = self.y_bc.repeat((self.n_parameter_obs,1))
@@ -653,7 +653,7 @@ class Elliptic1DPIGP(PIGP):
             
         # Roots for KL
         self.finder = RootFinder(lam, self.parameter_dim)
-        self.roots = torch.tensor(self.finder.find_roots(), dtype=torch.float64)
+        self.roots = torch.tensor(self.finder.find_roots(), dtype=torch.float64,device=self.device)
         self.kuf = self.kernel_uf(self.parameters_data,self.x_sol_data)
 
 
@@ -670,9 +670,10 @@ class Elliptic1DPIGP(PIGP):
         basis = self.A[:, None] * self.an[:, None] * (torch.sin(self.roots[:, None] * x) +
                     (self.roots[:, None] / 4) * torch.cos(self.roots[:, None] * x))
         result = theta @ basis
-        return torch.exp(result)
+        return torch.exp(result).to(self.device)
 
     def grad_kl_eval(self, theta, x):
         basis = self.A[:, None] * self.an[:, None] * self.roots[:, None] * (
             torch.cos(self.roots[:, None] * x) - (self.roots[:, None] / 4) * torch.sin(self.roots[:, None] * x))
-        return theta @ basis
+        res = theta @ basis
+        return res.to(self.device)

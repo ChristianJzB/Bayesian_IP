@@ -71,7 +71,7 @@ def run_experiment(config_experiment,device):
 
         torch.save(elliptic_gp, f"./Elliptic/models/elliptic_pigp_{model_specific}.pt")
     else:
-        elliptic_gp = torch.load(f"./Elliptic/models/elliptic_pigp_{model_specific}.pt")
+        elliptic_gp = torch.load(f"./Elliptic/models/elliptic_pigp_{model_specific}.pt", map_location=device)
 
 
     # Step 3: Generate noisy observations for Inverse Problem

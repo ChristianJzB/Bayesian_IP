@@ -67,7 +67,7 @@ class EllipticMCMC(MetropolisHastings):
         dy = mean_surg.shape[0]
 
         diff = (self.observations_values - mean_surg.reshape(-1, 1))
-        sigma = var_surg +  torch.diag(torch.ones(dy) * self.observation_noise ** 2)
+        sigma = var_surg +  torch.diag(torch.ones(dy,device = self.device) * self.observation_noise ** 2)
 
         L = torch.linalg.cholesky(sigma)
         k_inv_g = torch.linalg.solve(sigma,diff) 
@@ -194,7 +194,7 @@ class EllipticMCMCDA(MCMCDA):
 
         diff = (self.observations_values - mean_surg.reshape(-1, 1))
 
-        sigma = var_surg +  torch.diag(torch.ones(dy) * self.observation_noise ** 2)
+        sigma = var_surg +  torch.diag(torch.ones(dy,device = self.device) * self.observation_noise ** 2)
 
         L = torch.linalg.cholesky(sigma)
         k_inv_g = torch.linalg.solve(sigma,diff) 
