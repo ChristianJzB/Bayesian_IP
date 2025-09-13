@@ -1,0 +1,9 @@
+{"time":"2025-07-03T23:13:22.226950223+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T23:13:22.22696307+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_231322-tl1unfcg/logs/debug-core.log"}
+{"time":"2025-07-03T23:13:22.330591758+01:00","level":"INFO","msg":"created new stream","id":"tl1unfcg"}
+{"time":"2025-07-03T23:13:22.330628962+01:00","level":"INFO","msg":"stream: started","id":"tl1unfcg"}
+{"time":"2025-07-03T23:13:22.33069149+01:00","level":"INFO","msg":"sender: started","stream_id":"tl1unfcg"}
+{"time":"2025-07-03T23:13:22.330713196+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"tl1unfcg"}
+{"time":"2025-07-03T23:13:22.330740858+01:00","level":"INFO","msg":"handler: started","stream_id":"tl1unfcg"}
+{"time":"2025-07-03T23:13:22.845364797+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T23:13:33.760171867+01:00","level":"INFO","msg":"Pausing system monitor"}

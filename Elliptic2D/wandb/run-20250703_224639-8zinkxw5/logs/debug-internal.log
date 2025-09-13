@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:46:39.643671832+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:46:39.643689021+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_224639-8zinkxw5/logs/debug-core.log"}
+{"time":"2025-07-03T22:46:39.750548612+01:00","level":"INFO","msg":"created new stream","id":"8zinkxw5"}
+{"time":"2025-07-03T22:46:39.750693767+01:00","level":"INFO","msg":"stream: started","id":"8zinkxw5"}
+{"time":"2025-07-03T22:46:39.750768266+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"8zinkxw5"}
+{"time":"2025-07-03T22:46:39.750766204+01:00","level":"INFO","msg":"sender: started","stream_id":"8zinkxw5"}
+{"time":"2025-07-03T22:46:39.75087335+01:00","level":"INFO","msg":"handler: started","stream_id":"8zinkxw5"}
+{"time":"2025-07-03T22:46:40.176764442+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:46:50.699204623+01:00","level":"INFO","msg":"Pausing system monitor"}

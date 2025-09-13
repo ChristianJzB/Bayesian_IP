@@ -1,0 +1,8 @@
+{"time":"2025-07-03T23:18:39.262006991+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T23:18:39.262031356+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_231839-g5c1rcxq/logs/debug-core.log"}
+{"time":"2025-07-03T23:18:39.365029097+01:00","level":"INFO","msg":"created new stream","id":"g5c1rcxq"}
+{"time":"2025-07-03T23:18:39.365055934+01:00","level":"INFO","msg":"stream: started","id":"g5c1rcxq"}
+{"time":"2025-07-03T23:18:39.365209402+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"g5c1rcxq"}
+{"time":"2025-07-03T23:18:39.365213452+01:00","level":"INFO","msg":"sender: started","stream_id":"g5c1rcxq"}
+{"time":"2025-07-03T23:18:39.36525353+01:00","level":"INFO","msg":"handler: started","stream_id":"g5c1rcxq"}
+{"time":"2025-07-03T23:18:39.778415057+01:00","level":"INFO","msg":"Starting system monitor"}

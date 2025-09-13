@@ -1,0 +1,17 @@
+{"time":"2025-07-08T12:17:42.913034248+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-08T12:17:42.91305581+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250708_121742-d711os43/logs/debug-core.log"}
+{"time":"2025-07-08T12:17:43.017106339+01:00","level":"INFO","msg":"created new stream","id":"d711os43"}
+{"time":"2025-07-08T12:17:43.0171373+01:00","level":"INFO","msg":"stream: started","id":"d711os43"}
+{"time":"2025-07-08T12:17:43.017168751+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"d711os43"}
+{"time":"2025-07-08T12:17:43.017207652+01:00","level":"INFO","msg":"handler: started","stream_id":"d711os43"}
+{"time":"2025-07-08T12:17:43.01729645+01:00","level":"INFO","msg":"sender: started","stream_id":"d711os43"}
+{"time":"2025-07-08T12:17:43.433133716+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-08T12:22:31.475074769+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-08T12:22:31.475731656+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-08T12:22:32.475719598+01:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading models/elliptic_hl3_nn100_s200_kl2.pth","runtime_seconds":0.605177143,"progress":"215.8KB/215.8KB"}],"total_operations":1}}
+{"time":"2025-07-08T12:22:33.538464361+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-08T12:22:34.86765071+01:00","level":"INFO","msg":"stream: closing","id":"d711os43"}
+{"time":"2025-07-08T12:22:34.873607403+01:00","level":"INFO","msg":"handler: closed","stream_id":"d711os43"}
+{"time":"2025-07-08T12:22:34.873632286+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"d711os43"}
+{"time":"2025-07-08T12:22:34.873682799+01:00","level":"INFO","msg":"sender: closed","stream_id":"d711os43"}
+{"time":"2025-07-08T12:22:34.873713682+01:00","level":"INFO","msg":"stream: closed","id":"d711os43"}

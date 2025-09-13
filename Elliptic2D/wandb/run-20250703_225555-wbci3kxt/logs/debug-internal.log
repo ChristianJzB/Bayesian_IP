@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:55:55.082466583+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:55:55.082493611+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_225555-wbci3kxt/logs/debug-core.log"}
+{"time":"2025-07-03T22:55:55.188498648+01:00","level":"INFO","msg":"created new stream","id":"wbci3kxt"}
+{"time":"2025-07-03T22:55:55.188633729+01:00","level":"INFO","msg":"stream: started","id":"wbci3kxt"}
+{"time":"2025-07-03T22:55:55.188706643+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"wbci3kxt"}
+{"time":"2025-07-03T22:55:55.188719831+01:00","level":"INFO","msg":"sender: started","stream_id":"wbci3kxt"}
+{"time":"2025-07-03T22:55:55.188747426+01:00","level":"INFO","msg":"handler: started","stream_id":"wbci3kxt"}
+{"time":"2025-07-03T22:55:55.546913818+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:56:06.999934684+01:00","level":"INFO","msg":"Pausing system monitor"}

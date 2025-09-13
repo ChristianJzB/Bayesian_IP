@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:24:58.561184173+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:24:58.561196757+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_222458-36gfxrex/logs/debug-core.log"}
+{"time":"2025-07-03T22:24:58.666045911+01:00","level":"INFO","msg":"created new stream","id":"36gfxrex"}
+{"time":"2025-07-03T22:24:58.666137945+01:00","level":"INFO","msg":"stream: started","id":"36gfxrex"}
+{"time":"2025-07-03T22:24:58.666245912+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"36gfxrex"}
+{"time":"2025-07-03T22:24:58.666295831+01:00","level":"INFO","msg":"sender: started","stream_id":"36gfxrex"}
+{"time":"2025-07-03T22:24:58.666481331+01:00","level":"INFO","msg":"handler: started","stream_id":"36gfxrex"}
+{"time":"2025-07-03T22:24:59.066016935+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:24:59.376810144+01:00","level":"INFO","msg":"Pausing system monitor"}

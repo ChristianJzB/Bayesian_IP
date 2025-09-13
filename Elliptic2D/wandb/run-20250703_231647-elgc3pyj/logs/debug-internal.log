@@ -1,0 +1,9 @@
+{"time":"2025-07-03T23:16:47.127213034+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T23:16:47.127228787+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_231647-elgc3pyj/logs/debug-core.log"}
+{"time":"2025-07-03T23:16:47.233899169+01:00","level":"INFO","msg":"created new stream","id":"elgc3pyj"}
+{"time":"2025-07-03T23:16:47.233978989+01:00","level":"INFO","msg":"stream: started","id":"elgc3pyj"}
+{"time":"2025-07-03T23:16:47.234099275+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"elgc3pyj"}
+{"time":"2025-07-03T23:16:47.234196545+01:00","level":"INFO","msg":"handler: started","stream_id":"elgc3pyj"}
+{"time":"2025-07-03T23:16:47.234342151+01:00","level":"INFO","msg":"sender: started","stream_id":"elgc3pyj"}
+{"time":"2025-07-03T23:16:47.752142742+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T23:16:58.864367189+01:00","level":"INFO","msg":"Pausing system monitor"}

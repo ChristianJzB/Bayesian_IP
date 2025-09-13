@@ -1,0 +1,8 @@
+{"time":"2025-07-07T23:00:06.587123081+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-07T23:00:06.587136663+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250707_230006-5hatvixs/logs/debug-core.log"}
+{"time":"2025-07-07T23:00:06.693054927+01:00","level":"INFO","msg":"created new stream","id":"5hatvixs"}
+{"time":"2025-07-07T23:00:06.693131778+01:00","level":"INFO","msg":"stream: started","id":"5hatvixs"}
+{"time":"2025-07-07T23:00:06.693288421+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"5hatvixs"}
+{"time":"2025-07-07T23:00:06.693341767+01:00","level":"INFO","msg":"handler: started","stream_id":"5hatvixs"}
+{"time":"2025-07-07T23:00:06.693484225+01:00","level":"INFO","msg":"sender: started","stream_id":"5hatvixs"}
+{"time":"2025-07-07T23:00:07.114348045+01:00","level":"INFO","msg":"Starting system monitor"}

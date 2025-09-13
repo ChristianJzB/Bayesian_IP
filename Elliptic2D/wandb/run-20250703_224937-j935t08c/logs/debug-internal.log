@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:49:37.418950557+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:49:37.418970353+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_224937-j935t08c/logs/debug-core.log"}
+{"time":"2025-07-03T22:49:37.521787132+01:00","level":"INFO","msg":"created new stream","id":"j935t08c"}
+{"time":"2025-07-03T22:49:37.521825983+01:00","level":"INFO","msg":"stream: started","id":"j935t08c"}
+{"time":"2025-07-03T22:49:37.521851662+01:00","level":"INFO","msg":"handler: started","stream_id":"j935t08c"}
+{"time":"2025-07-03T22:49:37.52186085+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"j935t08c"}
+{"time":"2025-07-03T22:49:37.521896447+01:00","level":"INFO","msg":"sender: started","stream_id":"j935t08c"}
+{"time":"2025-07-03T22:49:38.04108113+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:49:49.07491817+01:00","level":"INFO","msg":"Pausing system monitor"}

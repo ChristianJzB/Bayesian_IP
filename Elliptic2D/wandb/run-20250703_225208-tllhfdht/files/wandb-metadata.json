@@ -1,0 +1,31 @@
+{
+  "os": "Linux-6.8.0-60-generic-x86_64-with-glibc2.35",
+  "python": "3.12.5",
+  "startedAt": "2025-07-03T21:52:08.227294Z",
+  "program": "/home/s2113174/Projects-1/Elliptic2D/2D_Elliptic.ipynb",
+  "git": {
+    "remote": "https://github.com/ChristianJzB/Projects.git",
+    "commit": "0587689a72060ae6577f47945def717787ab2517"
+  },
+  "email": "s2113174@ed.ac.uk",
+  "root": "/home/s2113174/Projects-1/Elliptic2D",
+  "host": "MATHS-SELF-2016",
+  "username": "s2113174",
+  "executable": "/home/s2113174/anaconda3/envs/fenicsx-env/bin/python",
+  "codePathLocal": "2D_Elliptic.ipynb",
+  "cpu_count": 10,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "981132795904",
+      "used": "292699414528"
+    }
+  },
+  "memory": {
+    "total": "32817532928"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 12
+  }
+}

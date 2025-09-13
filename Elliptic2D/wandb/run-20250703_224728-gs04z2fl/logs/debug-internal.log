@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:47:28.599369799+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:47:28.599398603+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_224728-gs04z2fl/logs/debug-core.log"}
+{"time":"2025-07-03T22:47:28.702059926+01:00","level":"INFO","msg":"created new stream","id":"gs04z2fl"}
+{"time":"2025-07-03T22:47:28.702082053+01:00","level":"INFO","msg":"stream: started","id":"gs04z2fl"}
+{"time":"2025-07-03T22:47:28.702126379+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"gs04z2fl"}
+{"time":"2025-07-03T22:47:28.702167281+01:00","level":"INFO","msg":"sender: started","stream_id":"gs04z2fl"}
+{"time":"2025-07-03T22:47:28.702198708+01:00","level":"INFO","msg":"handler: started","stream_id":"gs04z2fl"}
+{"time":"2025-07-03T22:47:29.122909847+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:47:40.045627242+01:00","level":"INFO","msg":"Pausing system monitor"}

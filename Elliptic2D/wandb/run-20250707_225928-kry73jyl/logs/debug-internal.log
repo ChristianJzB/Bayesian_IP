@@ -1,0 +1,8 @@
+{"time":"2025-07-07T22:59:28.296439193+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-07T22:59:28.296452461+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250707_225928-kry73jyl/logs/debug-core.log"}
+{"time":"2025-07-07T22:59:28.398864307+01:00","level":"INFO","msg":"created new stream","id":"kry73jyl"}
+{"time":"2025-07-07T22:59:28.3988813+01:00","level":"INFO","msg":"stream: started","id":"kry73jyl"}
+{"time":"2025-07-07T22:59:28.398954834+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"kry73jyl"}
+{"time":"2025-07-07T22:59:28.398978649+01:00","level":"INFO","msg":"sender: started","stream_id":"kry73jyl"}
+{"time":"2025-07-07T22:59:28.399009613+01:00","level":"INFO","msg":"handler: started","stream_id":"kry73jyl"}
+{"time":"2025-07-07T22:59:28.754421+01:00","level":"INFO","msg":"Starting system monitor"}

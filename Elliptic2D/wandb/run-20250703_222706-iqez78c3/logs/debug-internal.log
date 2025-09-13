@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:27:06.964816449+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:27:06.964829236+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_222706-iqez78c3/logs/debug-core.log"}
+{"time":"2025-07-03T22:27:07.067751937+01:00","level":"INFO","msg":"created new stream","id":"iqez78c3"}
+{"time":"2025-07-03T22:27:07.067776537+01:00","level":"INFO","msg":"stream: started","id":"iqez78c3"}
+{"time":"2025-07-03T22:27:07.067826315+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"iqez78c3"}
+{"time":"2025-07-03T22:27:07.067822348+01:00","level":"INFO","msg":"handler: started","stream_id":"iqez78c3"}
+{"time":"2025-07-03T22:27:07.067862742+01:00","level":"INFO","msg":"sender: started","stream_id":"iqez78c3"}
+{"time":"2025-07-03T22:27:07.399837206+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:30:37.349740178+01:00","level":"INFO","msg":"Pausing system monitor"}

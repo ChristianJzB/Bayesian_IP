@@ -1,0 +1,13 @@
+Elliptic2D(
+  (model): MDNN(
+    (activation_fn): Tanh()
+    (u_layer): Linear(in_features=3, out_features=100, bias=True)
+    (v_layer): Linear(in_features=3, out_features=100, bias=True)
+    (hidden_layers): ModuleList(
+      (0): Linear(in_features=3, out_features=100, bias=True)
+      (1-2): 2 x Linear(in_features=100, out_features=100, bias=True)
+    )
+    (output_layer): Linear(in_features=100, out_features=1, bias=True)
+  )
+)
+torch.Size([200, 4])

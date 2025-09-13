@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:56:36.614049186+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:56:36.614074265+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_225636-zw47yrex/logs/debug-core.log"}
+{"time":"2025-07-03T22:56:36.718738739+01:00","level":"INFO","msg":"created new stream","id":"zw47yrex"}
+{"time":"2025-07-03T22:56:36.718801231+01:00","level":"INFO","msg":"stream: started","id":"zw47yrex"}
+{"time":"2025-07-03T22:56:36.718950142+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"zw47yrex"}
+{"time":"2025-07-03T22:56:36.718961967+01:00","level":"INFO","msg":"handler: started","stream_id":"zw47yrex"}
+{"time":"2025-07-03T22:56:36.71911072+01:00","level":"INFO","msg":"sender: started","stream_id":"zw47yrex"}
+{"time":"2025-07-03T22:56:37.172931714+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:56:47.955723875+01:00","level":"INFO","msg":"Pausing system monitor"}

@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:21:12.665615181+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:21:12.66562949+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_222112-vqdawoun/logs/debug-core.log"}
+{"time":"2025-07-03T22:21:12.768019779+01:00","level":"INFO","msg":"created new stream","id":"vqdawoun"}
+{"time":"2025-07-03T22:21:12.768043809+01:00","level":"INFO","msg":"stream: started","id":"vqdawoun"}
+{"time":"2025-07-03T22:21:12.768070317+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"vqdawoun"}
+{"time":"2025-07-03T22:21:12.768079349+01:00","level":"INFO","msg":"handler: started","stream_id":"vqdawoun"}
+{"time":"2025-07-03T22:21:12.768140878+01:00","level":"INFO","msg":"sender: started","stream_id":"vqdawoun"}
+{"time":"2025-07-03T22:21:13.279636891+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:21:13.585689956+01:00","level":"INFO","msg":"Pausing system monitor"}

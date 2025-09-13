@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:45:26.957180074+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:45:26.957198338+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_224526-mj4hbuhq/logs/debug-core.log"}
+{"time":"2025-07-03T22:45:27.062411079+01:00","level":"INFO","msg":"created new stream","id":"mj4hbuhq"}
+{"time":"2025-07-03T22:45:27.062470537+01:00","level":"INFO","msg":"stream: started","id":"mj4hbuhq"}
+{"time":"2025-07-03T22:45:27.062665636+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"mj4hbuhq"}
+{"time":"2025-07-03T22:45:27.062688364+01:00","level":"INFO","msg":"sender: started","stream_id":"mj4hbuhq"}
+{"time":"2025-07-03T22:45:27.062762858+01:00","level":"INFO","msg":"handler: started","stream_id":"mj4hbuhq"}
+{"time":"2025-07-03T22:45:27.40666325+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:45:37.993206909+01:00","level":"INFO","msg":"Pausing system monitor"}

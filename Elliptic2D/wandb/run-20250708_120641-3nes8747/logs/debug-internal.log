@@ -1,0 +1,17 @@
+{"time":"2025-07-08T12:06:41.605555508+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-08T12:06:41.605571331+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250708_120641-3nes8747/logs/debug-core.log"}
+{"time":"2025-07-08T12:06:41.709198093+01:00","level":"INFO","msg":"created new stream","id":"3nes8747"}
+{"time":"2025-07-08T12:06:41.709235745+01:00","level":"INFO","msg":"stream: started","id":"3nes8747"}
+{"time":"2025-07-08T12:06:41.709355182+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:06:41.709376393+01:00","level":"INFO","msg":"sender: started","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:06:41.709453169+01:00","level":"INFO","msg":"handler: started","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:06:42.122750111+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-08T12:11:20.364580133+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-08T12:11:20.36509726+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-08T12:11:21.365941301+01:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading models/elliptic_hl3_nn100_s200_kl2.pth","runtime_seconds":0.64066595,"progress":"215.8KB/215.8KB"},{"desc":"uploading output.log","runtime_seconds":0.44000747}],"total_operations":2}}
+{"time":"2025-07-08T12:11:22.477286093+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-08T12:11:23.803916801+01:00","level":"INFO","msg":"stream: closing","id":"3nes8747"}
+{"time":"2025-07-08T12:11:23.803951028+01:00","level":"INFO","msg":"handler: closed","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:11:23.803966267+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:11:23.803980212+01:00","level":"INFO","msg":"sender: closed","stream_id":"3nes8747"}
+{"time":"2025-07-08T12:11:23.804058249+01:00","level":"INFO","msg":"stream: closed","id":"3nes8747"}

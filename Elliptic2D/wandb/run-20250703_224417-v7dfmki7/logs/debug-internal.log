@@ -1,0 +1,11 @@
+{"time":"2025-07-03T22:44:17.247277118+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:44:17.247289899+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_224417-v7dfmki7/logs/debug-core.log"}
+{"time":"2025-07-03T22:44:17.352879016+01:00","level":"INFO","msg":"created new stream","id":"v7dfmki7"}
+{"time":"2025-07-03T22:44:17.352945905+01:00","level":"INFO","msg":"stream: started","id":"v7dfmki7"}
+{"time":"2025-07-03T22:44:17.35312171+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"v7dfmki7"}
+{"time":"2025-07-03T22:44:17.353102977+01:00","level":"INFO","msg":"handler: started","stream_id":"v7dfmki7"}
+{"time":"2025-07-03T22:44:17.353245379+01:00","level":"INFO","msg":"sender: started","stream_id":"v7dfmki7"}
+{"time":"2025-07-03T22:44:17.726338319+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:44:28.451594112+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-07-03T22:45:14.837500285+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-07-03T22:45:14.840095045+01:00","level":"INFO","msg":"Pausing system monitor"}

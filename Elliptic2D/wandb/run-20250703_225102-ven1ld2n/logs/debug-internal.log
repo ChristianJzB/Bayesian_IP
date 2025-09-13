@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:51:02.064814584+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:51:02.064829074+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_225102-ven1ld2n/logs/debug-core.log"}
+{"time":"2025-07-03T22:51:02.170372017+01:00","level":"INFO","msg":"created new stream","id":"ven1ld2n"}
+{"time":"2025-07-03T22:51:02.170463196+01:00","level":"INFO","msg":"stream: started","id":"ven1ld2n"}
+{"time":"2025-07-03T22:51:02.170551444+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"ven1ld2n"}
+{"time":"2025-07-03T22:51:02.170590709+01:00","level":"INFO","msg":"sender: started","stream_id":"ven1ld2n"}
+{"time":"2025-07-03T22:51:02.170660387+01:00","level":"INFO","msg":"handler: started","stream_id":"ven1ld2n"}
+{"time":"2025-07-03T22:51:02.521911228+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:51:13.523011823+01:00","level":"INFO","msg":"Pausing system monitor"}

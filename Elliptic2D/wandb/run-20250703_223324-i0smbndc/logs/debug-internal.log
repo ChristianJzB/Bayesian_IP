@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:33:24.224513706+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:33:24.224528929+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_223324-i0smbndc/logs/debug-core.log"}
+{"time":"2025-07-03T22:33:24.327546746+01:00","level":"INFO","msg":"created new stream","id":"i0smbndc"}
+{"time":"2025-07-03T22:33:24.327571821+01:00","level":"INFO","msg":"stream: started","id":"i0smbndc"}
+{"time":"2025-07-03T22:33:24.327584261+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"i0smbndc"}
+{"time":"2025-07-03T22:33:24.327618777+01:00","level":"INFO","msg":"handler: started","stream_id":"i0smbndc"}
+{"time":"2025-07-03T22:33:24.327647242+01:00","level":"INFO","msg":"sender: started","stream_id":"i0smbndc"}
+{"time":"2025-07-03T22:33:24.679744274+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:36:54.83065246+01:00","level":"INFO","msg":"Pausing system monitor"}

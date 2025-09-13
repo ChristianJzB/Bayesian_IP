@@ -1,0 +1,9 @@
+{"time":"2025-07-03T22:52:08.228416959+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-03T22:52:08.228440255+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250703_225208-tllhfdht/logs/debug-core.log"}
+{"time":"2025-07-03T22:52:08.331972572+01:00","level":"INFO","msg":"created new stream","id":"tllhfdht"}
+{"time":"2025-07-03T22:52:08.332005207+01:00","level":"INFO","msg":"stream: started","id":"tllhfdht"}
+{"time":"2025-07-03T22:52:08.332013673+01:00","level":"INFO","msg":"handler: started","stream_id":"tllhfdht"}
+{"time":"2025-07-03T22:52:08.332045081+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"tllhfdht"}
+{"time":"2025-07-03T22:52:08.332045032+01:00","level":"INFO","msg":"sender: started","stream_id":"tllhfdht"}
+{"time":"2025-07-03T22:52:08.666414291+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-03T22:52:19.798217111+01:00","level":"INFO","msg":"Pausing system monitor"}

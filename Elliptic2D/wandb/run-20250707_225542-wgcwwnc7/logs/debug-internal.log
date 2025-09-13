@@ -1,0 +1,19 @@
+{"time":"2025-07-07T22:55:42.287848611+01:00","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2025-07-07T22:55:42.287872334+01:00","level":"INFO","msg":"created symlink","path":"/home/s2113174/Projects-1/Elliptic2D/wandb/run-20250707_225542-wgcwwnc7/logs/debug-core.log"}
+{"time":"2025-07-07T22:55:42.391077436+01:00","level":"INFO","msg":"created new stream","id":"wgcwwnc7"}
+{"time":"2025-07-07T22:55:42.391109447+01:00","level":"INFO","msg":"stream: started","id":"wgcwwnc7"}
+{"time":"2025-07-07T22:55:42.391144921+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:55:42.391145234+01:00","level":"INFO","msg":"sender: started","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:55:42.391190452+01:00","level":"INFO","msg":"handler: started","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:55:43.01402695+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-07T22:56:32.818338909+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-07-07T22:57:26.296115568+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-07-07T22:57:26.336471439+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-07T22:57:26.336993917+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-07T22:57:27.309030242+01:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"saving job artifact","runtime_seconds":0.56201733}],"total_operations":1}}
+{"time":"2025-07-07T22:57:29.75676149+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-07T22:57:31.082014605+01:00","level":"INFO","msg":"stream: closing","id":"wgcwwnc7"}
+{"time":"2025-07-07T22:57:31.08203543+01:00","level":"INFO","msg":"handler: closed","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:57:31.082044447+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:57:31.082049788+01:00","level":"INFO","msg":"sender: closed","stream_id":"wgcwwnc7"}
+{"time":"2025-07-07T22:57:31.082097928+01:00","level":"INFO","msg":"stream: closed","id":"wgcwwnc7"}
