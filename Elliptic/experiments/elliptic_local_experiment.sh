@@ -48,16 +48,17 @@
 #!/bin/sh
 
 # Define different values of N for experiments
-N_VALUES=(25 100) 
-KL_VALUES=(2 3 4 5) 
+N_VALUES=(100) 
+KL_VALUES=(3 4) 
 
 # Define default values for parameters (change as needed)
-TRAIN_GP=""
+TRAIN_GP="--train_gp"
 NOISE_LEVEL="--noise_level 1e-4"
 PROPOSAL="--proposal pCN" # Default RMMCMC
 GP_MCMC=""
 DA_MCMC_GP_MEAN="--da_mcmc_gp_mean"
-DA_MCMC_GP_MARGINAL="--da_mcmc_gp_marginal"
+DA_MCMC_GP_MARGINAL=""
+REPEAT="4"
 
 for N in "${N_VALUES[@]}"; do
             for KL in "${KL_VALUES[@]}"; do
@@ -65,6 +66,6 @@ for N in "${N_VALUES[@]}"; do
 
 
 # Run the experiment with dynamic and fixed arguments
-python Elliptic/experiments/elliptic_pigp_experiment.py --N $N --kl $KL $TRAIN_GP $NOISE_LEVEL $PROPOSAL $GP_MCMC $DA_MCMC_GP_MEAN
+python Elliptic/experiments/elliptic_pigp_experiment.py --N $N --kl $KL $TRAIN_GP $NOISE_LEVEL $PROPOSAL $GP_MCMC $DA_MCMC_GP_MEAN $DA_MCMC_GP_MARGINAL --repeat $REPEAT
     done
 done

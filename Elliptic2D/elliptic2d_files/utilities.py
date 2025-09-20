@@ -117,7 +117,7 @@ def pigp_training_data_generation(theta_obs,spatial_points_obs,kl_expansion,nois
     return data_training,obs_points, sol_test
 
 # Helper function to set up MCMC chain
-def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,device, gp_marginal=False):
+def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,device, gp_marginal=False,eval_val=False):
     mcmc = EllipticMCMC(
         surrogate=surrogate_model,
         observation_locations=obs_points,
@@ -131,7 +131,7 @@ def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,devi
         device=device,
         gp_marginal = gp_marginal
     )
-    return mcmc.run_chain(verbose=config_experiment.verbose)
+    return mcmc.run_chain(verbose=config_experiment.verbose,eval_val=eval_val)
 
 def run_da_mcmc_chain(nn_surrogate_model,fem_solver, obs_points, sol_test, config_experiment,device, gp_marginal=False):
     elliptic_mcmcda =  EllipticMCMCDA(nn_surrogate_model,fem_solver, 

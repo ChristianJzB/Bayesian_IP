@@ -47,9 +47,9 @@ class EllipticMCMC(MetropolisHastings):
         """
         self.surrogate.theta = theta.cpu().numpy()  # Convert to numpy for FEM solver
         self.surrogate.solve()
-        surg = self.surrogate.eval_at_points(self.observation_locations.cpu().numpy()).reshape(-1, 1)
+        surg = self.surrogate.evaluate_at_points(self.observation_locations.cpu().numpy()).reshape(-1, 1)
         surg = torch.tensor(surg, device=self.device)
-        return -0.5 * torch.sum(((self.observations_values - surg) ** 2) / (self.observation_noise ** 2))
+        return -0.5 * torch.sum(((self.observations_values - surg) ** 2) / (self.observation_noise ** 2)),surg
     
     def gp_log_likelihood(self, theta):
         if self.gp_marginal:
@@ -76,7 +76,7 @@ class EllipticMCMC(MetropolisHastings):
 
         # Log-likelihood
         lg = -0.5 * torch.matmul(diff.T, k_inv_g)- cte
-        return lg.squeeze()
+        return lg.squeeze(),mean_surg
     
     def gp_mean_log_likelihood(self,theta):
         """
@@ -85,7 +85,7 @@ class EllipticMCMC(MetropolisHastings):
         mean_surg = self.surrogate.prediction(theta.reshape(1,-1),var=False)
         diff = (self.observations_values - mean_surg.reshape(-1, 1))
         nll = -0.5 * torch.sum((diff ** 2) / (self.observation_noise ** 2))
-        return nll
+        return nll,mean_surg
 
 
     def nn_log_likelihood(self, theta):
@@ -94,7 +94,7 @@ class EllipticMCMC(MetropolisHastings):
         """
         data = torch.cat([self.observation_locations, theta.repeat(self.observation_locations.size(0), 1)], dim=1).float()
         surg = self.surrogate.u(data.float()).detach()
-        return -0.5 * torch.sum(((self.observations_values - surg) ** 2) / (self.observation_noise ** 2))
+        return -0.5 * torch.sum(((self.observations_values - surg) ** 2) / (self.observation_noise ** 2)),surg
 
     def dgala_log_likelihood(self, theta):
         """
@@ -111,7 +111,7 @@ class EllipticMCMC(MetropolisHastings):
 
         cte = 0.5 * (dy * torch.log(torch.tensor(2 * torch.pi)) + torch.sum(torch.log(sigma)))
 
-        return -0.5 * torch.sum(((self.observations_values - surg_mu.reshape(-1, 1)) ** 2) / sigma)- cte
+        return -0.5 * torch.sum(((self.observations_values - surg_mu.reshape(-1, 1)) ** 2) / sigma)- cte,surg_mu
     
     def log_likelihood(self, theta):
         """Directly call the precomputed likelihood function."""
@@ -157,7 +157,7 @@ class EllipticMCMCDA(MCMCDA):
         """
         surrogate.theta = theta.cpu().numpy()  # Convert to numpy for FEM solver
         surrogate.solve()
-        surg = surrogate.eval_at_points(self.observation_locations.cpu().numpy()).reshape(-1, 1)
+        surg = surrogate.evaluate_at_points(self.observation_locations.cpu().numpy()).reshape(-1, 1)
         surg = torch.tensor(surg, device=self.device)
         self.inner_likelihood_value = surg
         return -0.5 * torch.sum(((self.observations_values - surg) ** 2) / (self.observation_noise ** 2))

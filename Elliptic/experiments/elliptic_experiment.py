@@ -99,7 +99,6 @@ def run_experiment(config_experiment,device):
     model_specific = f"_hl{config_experiment.model.num_layers}_nn{config_experiment.model.hidden_dim}_s{config_experiment.nn_samples}_batch{config_experiment.batch_size}_kl{config_experiment.KL_expansion}"
     path_nn_model = f"./Elliptic/models/elliptic"+model_specific+".pth"
     path_dgala_model = f"./Elliptic/models/elliptic_dgala"+model_specific+".pth"
-    fem_path = f'./Elliptic/results/FEM_kl{config_experiment.KL_expansion}_var{config_experiment.noise_level}.npy'
     times = dict()
 
     if config_experiment.train:
@@ -127,7 +126,7 @@ def run_experiment(config_experiment,device):
         data_fit = deepgala_data_fit(config_experiment.nn_samples,config_experiment.KL_expansion,device)
         llp = dgala(nn_surrogate_model)
         llp.fit(data_fit)
-        llp.optimize_marginal_likelihoodb()
+        llp.optimize_marginal_likelihood()
         clear_hooks(llp)
         tdagala = dgala_timer.stop()
         times["deepgala"] = tdagala
@@ -169,19 +168,6 @@ def run_experiment(config_experiment,device):
 
         np.save('./Elliptic/results/dgala'+model_specific+ f'_var{config_experiment.noise_level}.npy', nn_samples[0])
     
-    # Step 6: MCMC FEM Samples (if enabled)
-    if config_experiment.fem_mcmc:
-        print("Starting MCMC with FEM")
-        fem_solver = FEMSolver(np.zeros(config_experiment.KL_expansion), vert=config_experiment.FEM_h, M =config_experiment.KL_expansion )
-        
-        mcmcfem_timer = Timer(use_gpu=True)
-        mcmcfem_timer.start()
-        fem_samples = run_mcmc_chain(fem_solver, obs_points, sol_test, config_experiment, device)
-        tfemmcmc = mcmcfem_timer.stop()
-        times["fem_mcmc"] = tfemmcmc
-
-        np.save(fem_path, fem_samples[0])
-
     # Step 7: Delayed Acceptance for NN
     if config_experiment.da_mcmc_nn:
         print(f"Starting MCMC-DA with NN_s{config_experiment.nn_samples} and FEM for {config_experiment.repeat}times")
@@ -264,7 +250,6 @@ if __name__ == "__main__":
     parser.add_argument("--deepgala", action="store_true", help="Fit DeepGala")
     parser.add_argument("--noise_level", type=float,default=1e-4,help="Noise level for IP")
     parser.add_argument("--proposal", type=str,default="random_walk",help="MCMC Proposal")
-    parser.add_argument("--fem_mcmc", action="store_true", help="Run MCMC for FEM")
     parser.add_argument("--nn_mcmc", action="store_true", help="Run MCMC for NN")
     parser.add_argument("--dgala_mcmc", action="store_true", help="Run MCMC for dgala")
     parser.add_argument("--da_mcmc_nn", action="store_true", help="Run DA-MCMC for NN")
@@ -281,6 +266,6 @@ if __name__ == "__main__":
     main(args.verbose, args.N,args.hidden_layers,args.num_neurons,args.batch_size,args.kl, args.train, 
          args.deepgala, 
          args.noise_level, args.proposal, 
-         args.fem_mcmc, args.nn_mcmc, args.dgala_mcmc, 
+         args.nn_mcmc, args.dgala_mcmc, 
          args.da_mcmc_nn, args.da_mcmc_dgala, 
          args.repeat,device)

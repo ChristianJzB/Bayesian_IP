@@ -113,7 +113,7 @@ def generate_noisy_obs(obs, nparam=2,vert=1000, mean=0, std=np.sqrt(1e-4)):
     obs_points = np.linspace(0.2,0.8,obs).reshape(-1,1)
 
     # Select the observation and solution points based on the indices
-    sol_points = solver.eval_at_points(obs_points)
+    sol_points = solver.evaluate_at_points(obs_points)
 
     # Generate noise and add it to the solution points
     noise_sol_points = add_noise(sol_points, mean, std)
@@ -146,7 +146,7 @@ def pigp_training_data_generation(theta_obs,spatial_points_obs,kl_expansion, dev
     for i,theta in enumerate(thetas):
         fem_solver.theta = theta
         fem_solver.solve()
-        training_data[i,:] = fem_solver.eval_at_points(obs_points).reshape(1, -1)
+        training_data[i,:] = fem_solver.evaluate_at_points(obs_points).reshape(1, -1)
         
     xf = torch.linspace(1e-10,0.999,10).view(-1, 1)
     yf = (4*xf).reshape(-1,1) # training data
@@ -166,7 +166,7 @@ def pigp_training_data_generation(theta_obs,spatial_points_obs,kl_expansion, dev
 
 
 # Helper function to set up MCMC chain
-def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,device, gp_marginal=False):
+def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,device, gp_marginal=False,eval_val = False):
     mcmc = EllipticMCMC(
         surrogate=surrogate_model,
         observation_locations=obs_points,
@@ -180,7 +180,7 @@ def run_mcmc_chain(surrogate_model, obs_points, sol_test, config_experiment,devi
         device=device,
         gp_marginal = gp_marginal
     )
-    return mcmc.run_chain(verbose=config_experiment.verbose)
+    return mcmc.run_chain(verbose=config_experiment.verbose,eval_val = eval_val)
 
 def run_da_mcmc_chain(nn_surrogate_model,fem_solver, obs_points, sol_test, config_experiment,device, gp_marginal=False):
     elliptic_mcmcda =  EllipticMCMCDA(nn_surrogate_model,fem_solver, 

@@ -40,14 +40,14 @@
 
 # Define different values of N for experiments
 
-CONFIG_MODELS=("110 3" "110 4" "110 5")
+CONFIG_MODELS=("5 2" "25 2" "50 2" "25 3" "50 3" "75 3" "90 3" "100 3" "25 4" "50 4" "75 4" "90 4" "100 4" "25 5" "50 5" "75 5" "90 5" "100 5")
 
 # Define default values for parameters (change as needed)
 TRAIN_GP="--train_gp"
 NOISE_LEVEL="--noise_level 1e-4"
 PROPOSAL="--proposal pCN" # Default RMMCMC
 GP_MCMC=""
-DA_MCMC_GP_MEAN="--da_mcmc_gp"
+DA_MCMC_GP_MEAN="--da_mcmc_gp_mean"
 DA_MCMC_GP_MARGINAL=""
 
 

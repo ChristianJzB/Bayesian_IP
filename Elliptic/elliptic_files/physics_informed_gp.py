@@ -647,15 +647,13 @@ class PIGP:
         return marginal_mean
     
 class Elliptic1DPIGP(PIGP):
-    def __init__(self, data_training, reg_matrix=1e-6, lam=1/4,sigma_l_parameters=(1, 1), sigma_l_spatial=(1, 1),device = "cpu"):
+    def __init__(self, data_training, reg_matrix=1e-8, lam=1/4,sigma_l_parameters=(1, 1), sigma_l_spatial=(1, 1),device = "cpu"):
         super(Elliptic1DPIGP, self).__init__(data_training = data_training , reg_matrix=reg_matrix,
                              sigma_l_parameters=sigma_l_parameters, sigma_l_spatial=sigma_l_spatial,device=device)
-            
         # Roots for KL
         self.finder = RootFinder(lam, self.parameter_dim)
         self.roots = torch.tensor(self.finder.find_roots(), dtype=torch.float64,device=self.device)
         self.kuf = self.kernel_uf(self.parameters_data,self.x_sol_data)
-
 
     @property
     def A(self):

@@ -64,11 +64,10 @@ def run_experiment(config_experiment,device):
                                                                         noise_level=config_experiment.noise_level,
                                                                         ncells=config_experiment.fem_solver,
                                                                         device = device)
+    dgene = data_gen.stop()
+    times["data_gen"] = dgene
+    
     if config_experiment.train_gp:
-
-        dgene = data_gen.stop()
-        times["data_gen"] = dgene
-
         train_timer = Timer(use_gpu=True)
         train_timer.start()
         elliptic_gp = EllipticPIGP(data_training,device=device)

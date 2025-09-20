@@ -52,14 +52,23 @@ class MetropolisHastings(torch.nn.Module):
         }
 
         if proposal_type == "pCN":
-            self.log_prior_func = None  # Or set to a dummy function that returns 0
-            self.posterior_distribution = self.log_likelihood
-
+            self.log_prior_func = lambda theta: (0.0, None)
         elif proposal_type in prior_methods:
             self.log_prior_func = prior_methods[proposal_type]
-            self.posterior_distribution= (lambda theta: self.log_prior_func(theta) + self.log_likelihood(theta))
         else:
-            raise ValueError(f"Prior for proposal type '{proposal_type}' is not supported.")        
+            raise ValueError(f"Prior for proposal type '{proposal_type}' is not supported.")
+
+
+        # if proposal_type == "pCN":
+        #     self.log_prior_func = None  # Or set to a dummy function that returns 0
+        #     self.posterior_distribution = self.log_likelihood
+
+        # elif proposal_type in prior_methods:
+        #     self.log_prior_func = prior_methods[proposal_type]
+        #     # self.posterior_distribution= (lambda theta: (self.log_prior_func(theta)[0] + self.log_likelihood(theta),
+        #     #                               self.log_prior_func(theta)[1]))
+        # else:
+        #     raise ValueError(f"Prior for proposal type '{proposal_type}' is not supported.")        
 
         self.to(device)
 
@@ -102,23 +111,23 @@ class MetropolisHastings(torch.nn.Module):
         
         elif self.proposal_type == "langevin":
             return theta + dt * self.MYULA(theta) + torch.sqrt(2*dt) * torch.randn_like(theta)
+        
+    def posterior_distribution(self, theta):
+        loglike, surg = self.log_likelihood(theta)
+        logprior, _ = self.log_prior_func(theta)  # safe: always returns a tuple
+        posterior = logprior + loglike
+        return posterior, surg
     
-    # def posterior_distribution(self,theta):
-    #     # For the pCN its enough to use the likelihood
-    #     if self.proposal_type == "pCN":
-    #         return self.log_likelihood(theta)
-    #     else:
-    #         return self.log_prior(theta) + self.log_likelihood(theta)
-
-
-    def run_chain(self, verbose=True):
+    def run_chain(self, verbose=True, eval_val = False):
         """Run Metropolis-Hastings """
         #theta = torch.empty((self.nparameters), device=self.device).uniform_(-1, 1)
         theta = torch.rand(self.nparameters, device=self.device) * 2 - 1
         samples = torch.zeros((self.nsamples + self.burnin, self.nparameters), device=self.device)
+        evaluations = torch.zeros((self.nsamples + self.burnin, self.observations_values.shape[0]), device=self.device)
+
         accepted_proposals = 0
 
-        log_posterior = self.posterior_distribution(theta) 
+        log_posterior, model_eval_post = self.posterior_distribution(theta) 
 
         # Initialize separate dt for each chai
         dt =  self.dt
@@ -131,7 +140,7 @@ class MetropolisHastings(torch.nn.Module):
         for i in pbar:
             theta_proposal = self.proposal(theta, dt)  # Pass dt to proposal
 
-            log_posterior_proposal = self.posterior_distribution(theta_proposal)
+            log_posterior_proposal,model_eval_proposal = self.posterior_distribution(theta_proposal)
 
             # Compute acceptance probabilities (vectorized)
             a = torch.exp(log_posterior_proposal - log_posterior).clamp(max=1.0)
@@ -140,9 +149,13 @@ class MetropolisHastings(torch.nn.Module):
                 theta = theta_proposal
                 accepted_proposals += 1
                 log_posterior = log_posterior_proposal
+                model_eval_post = model_eval_proposal
 
             # Only store samples after burn-in
             samples[i, :] = theta
+
+            if eval_val:
+                evaluations[i,:] = model_eval_post.flatten()
 
             # Adaptive step size adjustment (each chain updates its own dt)
             dt += dt * (a - self.ideal_acceptace_rate) / (i + 1)
@@ -153,7 +166,7 @@ class MetropolisHastings(torch.nn.Module):
             if verbose and (i % (self.nsamples // 10) == 0)and (i!=0):
                 pbar.set_postfix(acceptance_rate=f"{accepted_proposals / (i+1):.4f}", proposal_variance=f"{dt:.4f}")
 
-        return samples[self.burnin:,:].detach().cpu().numpy(),accepted_proposals/self.nsamples, dt,samples[-1,:]
+        return samples[self.burnin:,:].detach().cpu().numpy(),accepted_proposals/self.nsamples, dt,samples[-1,:],evaluations[self.burnin:,:].detach().cpu().numpy()
 
     # Run chain in parallel
     # def _run_chain(self, seed, result_queue):
@@ -315,7 +328,7 @@ class MCMCDA(torch.nn.Module):
 
         outer_timer = Timer(use_gpu=True)
         outer_timer.start()
-        samples_outer, _, dt,theta = self.mcmc_chain.run_chain(verbose = verbose)
+        samples_outer, _, dt,theta,_ = self.mcmc_chain.run_chain(verbose = verbose)
         time_outer = outer_timer.stop()
 
         # Initialize separate dt for each chai

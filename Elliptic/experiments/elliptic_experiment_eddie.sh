@@ -78,21 +78,12 @@ DGALA_MCMC=""
 DA_MCMC_NN="--da_mcmc_nn"
 DA_MCMC_DGALA=""
 
-# Flag to check if FEM_MCMC has been added
-FEM_MCMC_ADDED=true
+
 
 for CONFIG in "${CONFIG_MODELS[@]}"; do
     read NLAYER NNEURON N BATCH KL <<< "$CONFIG"
 
     echo "Submitting job for N=$N and KL exp $KL"
-
-    # Add FEM_MCMC only for the first iteration
-    if [ "$FEM_MCMC_ADDED" = false ]; then
-        FEM_MCMC_FLAG="--fem_mcmc"
-        FEM_MCMC_ADDED=true
-    else
-        FEM_MCMC_FLAG=""
-    fi
 
     qsub -N "elliptic_N${N}" <<EOF
 #!/bin/bash

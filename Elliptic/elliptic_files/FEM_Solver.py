@@ -144,7 +144,7 @@ class FEMSolver:
         cells, types, x = plot.vtk_mesh(self.V)
         return (x, self.uh.x.array)
     
-    def eval_at_points(self, points):
+    def evaluate_at_points(self, points):
         """Evaluate the solution at arbitrary points using interpolation."""
         
         if self.uh is None:
