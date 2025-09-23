@@ -86,8 +86,8 @@ class MetropolisHastings(torch.nn.Module):
 
     def log_uniform(self, theta):
         if not torch.logical_and(theta >= -self.uniform_limit, theta <= self.uniform_limit).all():
-            return torch.tensor(-float("inf"))  # Ensure it remains a tensor
-        return torch.tensor(0.0)  # Keep consistency
+            return torch.tensor(-float("inf")),torch.tensor(0.0)  # Ensure it remains a tensor
+        return torch.tensor(0.0),torch.tensor(0.0)  # Keep consistency
 
     # def log_prior(self, theta):
     #     """Directly call the precomputed likelihood function."""

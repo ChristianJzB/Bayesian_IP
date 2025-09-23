@@ -6,7 +6,7 @@ CONFIG_MODELS=(2 3 4 5)
 # Define default values for parameters (change as needed)
 VERBOSE=""
 NOISE_LEVEL="--noise_level 1e-4"
-PROPOSAL="--proposal pCN" # Default RMMCMC
+PROPOSAL="--proposal random_walk" # Default RMMCMC
 
 for KL in "${CONFIG_MODELS[@]}"; do
     echo "Submitting FEM for KL exp $KL"

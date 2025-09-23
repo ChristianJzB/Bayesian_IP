@@ -78,15 +78,15 @@ def elliptic_experiment():
 
     config.proposal = "random_walk"
     config.proposal_variance = 1e-2
-    config.uniform_limit = 1
-    config.samples = 1_000_000
+    config.uniform_limit = 2
+    config.samples = 1_500_000
     config.FEM_h = 50
 
     # Delayed Acceptance
     config.da_mcmc_nn = False
     config.da_mcmc_dgala = False
-    config.iter_mcmc = 1_000_000
-    config.iter_da = 100_000
+    config.iter_mcmc = 1_500_000
+    config.iter_da = 50_000
 
     return config
 
@@ -215,7 +215,7 @@ def run_experiment(config_experiment,device):
 
 # Main loop for different sample sizes
 def main(verbose,N,hidden_layers,num_neurons,batch_size,kl,train,deepgala, 
-         noise_level,proposal,fem_mcmc,nn_mcmc,dgala_mcmc,da_mcmc_nn,da_mcmc_dgala, repeat,device):
+         noise_level,proposal,nn_mcmc,dgala_mcmc,da_mcmc_nn,da_mcmc_dgala, repeat,device):
     
     config_experiment = elliptic_experiment()
     config_experiment.verbose = verbose
@@ -228,7 +228,6 @@ def main(verbose,N,hidden_layers,num_neurons,batch_size,kl,train,deepgala,
     config_experiment.deepgala = deepgala
     config_experiment.noise_level = noise_level
     config_experiment.proposal = proposal
-    config_experiment.fem_mcmc = fem_mcmc
     config_experiment.nn_mcmc = nn_mcmc
     config_experiment.dgala_mcmc = dgala_mcmc
     config_experiment.da_mcmc_nn = da_mcmc_nn

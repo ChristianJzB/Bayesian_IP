@@ -123,9 +123,9 @@ def run_experiment(gp_config, kl, device="cpu"):
 
     for i in range(4):
         chain_fem = np.load(f'./Elliptic/results/FEM_kl{kl}_var0.0001_{i}.npy')
-        fem_solver = FEMSolver(np.zeros(kl), M=kl, vert=50)
+        eval_fem = np.load(f'./Elliptic/results/FEM_eval_kl{kl}_var0.0001_{i}.npy')
 
-        error_mcmc = error_norm_mean(elliptic_gp, fem_solver, obs_points, torch.tensor(chain_fem), device, gp=True)
+        error_mcmc = error_norm_mean(elliptic_gp, eval_fem, obs_points, torch.tensor(chain_fem), device, gp=True)
         gp_ind_res["bound"].append(error_mcmc)
 
         gp_post_eval = np.load(f"./Elliptic/results/mcmc_da_pigp_mean_spatial6_nsol{gp_config}_kl{kl}_0.0001_{i}.npy")
@@ -140,20 +140,24 @@ def run_experiment(gp_config, kl, device="cpu"):
 
 
 if __name__ == "__main__":
-    GP_config = [25, 50, 75, 90, 100]
-    KLs = [3, 4, 5]
+    GP_config = [
+        (5, 2),  (15, 2), (25, 2), (50, 2), (75, 2), (100, 2),
+        (5, 3),  (15, 3), (25, 3), (50, 3), (75, 3), (100, 3),
+        (5, 4),  (15, 4), (25, 4), (50, 4), (75, 4), (100, 4),
+        (5, 5),  (15, 5), (25, 5), (50, 5), (75, 5), (100, 5),
+    ]
 
     gp_results = {}
 
     with ProcessPoolExecutor(max_workers=4) as executor:
         futures = [executor.submit(run_experiment, gp_config, kl, "cpu")
-               for gp_config in GP_config for kl in KLs]
+               for gp_config,kl in GP_config]
 
     for f in as_completed(futures):
         gp_config, kl, gp_res = f.result()
         gp_results[f"kl_{kl}_{gp_config}"] = gp_res
 
-    with open("gp_results.json", "w") as f:
+    with open("./Elliptic/table_results/gp_results.json", "w") as f:
         json.dump(gp_results, f, indent=4)
 
     print("All results saved!")

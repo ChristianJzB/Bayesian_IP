@@ -13,7 +13,7 @@ sys.path.append(os.path.join(project_root, "Elliptic"))  # Explicitly add Ellipt
 from Base.utilities import Timer
 from elliptic_files.utilities import generate_noisy_obs, pigp_training_data_generation,run_da_mcmc_chain,run_mcmc_chain
 from elliptic_files.FEM_Solver import FEMSolver
-from elliptic_files.physics_informed_gp import Elliptic1DPIGP
+from elliptic_files.physics_informed_gp import Elliptic1DPIGP,EllipticPIGP
 
 def elliptic_pigp_experiment():
     config = ConfigDict()
@@ -30,15 +30,15 @@ def elliptic_pigp_experiment():
     config.fem_solver = 50
 
     config.proposal = "pCN"
-    config.proposal_variance = 1e-2
-    config.uniform_limit = 1
-    config.samples = 1_000_000
+    config.proposal_variance = 1e-1
+    config.uniform_limit = 2
+    config.samples = 1_500_000
     config.FEM_h = 50
 
     # Delayed Acceptance
     config.da_mcmc_nn = False
     config.da_mcmc_dgala = False
-    config.iter_mcmc = 1_000_000
+    config.iter_mcmc = 1_500_000
     config.iter_da = 50_000
     config.repeat = 4
 

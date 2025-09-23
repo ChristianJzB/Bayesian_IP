@@ -64,19 +64,18 @@
 
 # Define different values of N for experiments
 
-CONFIG_MODELS=("2 100 4000 250 3" "2 100 4000 250 4" "2 100 4000 250 5")
+CONFIG_MODELS=("2 20 25 10 2" "2 20 50 10 2" "2 20 100 10 2" "2 20 500 100 2" "2 100 4000 250 3" "2 100 4000 250 4" "2 100 4000 250 5")
 
 # Define default values for parameters (change as needed)
 VERBOSE=""
 TRAIN=""  # Set empty "" if you want default (False)
 DEEPGALA=""      # Empty means default (False)
 NOISE_LEVEL="--noise_level 1e-4"
-PROPOSAL="--proposal pCN" # Default RMMCMC
-FEM_MCMC="--fem_mcmc"
+PROPOSAL="--proposal random_walk" # Default RMMCMC
 NN_MCMC=""  # Example: enabled
 DGALA_MCMC=""
 DA_MCMC_NN="--da_mcmc_nn"
-DA_MCMC_DGALA=""
+DA_MCMC_DGALA="--da_mcmc_dgala"
 
 
 
@@ -91,7 +90,7 @@ for CONFIG in "${CONFIG_MODELS[@]}"; do
 # -q gpu
 # -l gpu=1 
 #$ -l h_vmem=40G
-#$ -l h_rt=6:00:00 
+#$ -l h_rt=10:00:00 
 
 # Load necessary modules
 . /etc/profile.d/modules.sh
@@ -100,6 +99,6 @@ module load miniforge
 conda activate experiments
 
 # Run the experiment with dynamic and fixed arguments
-python Elliptic/experiments/elliptic_experiment.py --N $N --hidden_layers $NLAYER --num_neurons $NNEURON --batch_size $BATCH --kl $KL $TRAIN $DEEPGALA $NOISE_LEVEL $PROPOSAL $FEM_MCMC_FLAG $NN_MCMC $DGALA_MCMC $DA_MCMC_NN $DA_MCMC_DGALA
+python Elliptic/experiments/elliptic_experiment.py --N $N --hidden_layers $NLAYER --num_neurons $NNEURON --batch_size $BATCH --kl $KL $TRAIN $DEEPGALA $NOISE_LEVEL $PROPOSAL $NN_MCMC $DGALA_MCMC $DA_MCMC_NN $DA_MCMC_DGALA
 EOF
 done

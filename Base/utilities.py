@@ -391,70 +391,42 @@ def discrete_W1(chain_nn,chain_fem):
         w1 = np.abs(samples_surrogate-samples_fine).sum()/n
     return w1
 
-# def samples_FEM_eval(fem_solver,observation_locations,samples):
-#     results = np.zeros((samples.shape[0],observation_locations.shape[0]))
 
-#     for i,theta in enumerate(samples):
-#         fem_solver.theta = theta  # Convert to numpy for FEM solver
-#         fem_solver.solve()
-#         surg = fem_solver.evaluate_at_points(observation_locations.cpu().numpy()).reshape(1, -1)
-#         results[i,:] = surg
-#     return results
-
-
-def error_norm_mean(surrogate, fine_model,observation_locations,samples, device, solver = True, gp=False):
+def error_norm_mean(surrogate, fine_model_eval,observation_locations,samples,device,gp=False):
     total_error = 0
-    for theta in samples:
+    for fine_eval,theta in zip(fine_model_eval,samples):
+        fine_pred = torch.tensor(fine_eval,device=device)
 
-        if solver:
-            fine_model.theta = theta.cpu().numpy()  # Convert to numpy for FEM solver
-            fine_model.solve()
-            surg = fine_model.evaluate_at_points(observation_locations.cpu().numpy()).reshape(-1, 1)
-            fine_pred = torch.tensor(surg, device=device)
-        else:
-            fine_pred = fine_model.prediction(theta.reshape(1,-1),var=False)
-
-
-        if gp and solver:
+        if gp:
             surrogate_pred = surrogate.prediction(theta.reshape(1,-1),var=False)
             
         else:
             data = torch.cat([observation_locations, theta.repeat(observation_locations.size(0), 1)], dim=1).float()
             surrogate_pred = surrogate.u(data.float()).detach()
 
-        
         error = (torch.linalg.norm((fine_pred.reshape(-1,1)-surrogate_pred.reshape(-1,1)),ord=2)**2).item()
         total_error += error
 
     return np.sqrt(total_error / samples.shape[0])
 
-def error_norm_marginal(surrogate, fine_model,observation_locations,samples, device, gp=False):
+def error_norm_marginal(surrogate, fine_model_eval,observation_locations,samples, device, gp=False):
     total_error = 0
-    for theta in samples:
-    
-        fine_model.theta = theta.cpu().numpy()  # Convert to numpy for FEM solver
-        fine_model.solve()
-        surg = fine_model.evaluate_at_points(observation_locations.cpu().numpy()).reshape(-1, 1)
-        fine_pred = torch.tensor(surg, device=device)
+    for fine_eval,theta in zip(fine_model_eval,samples):
+        fine_pred = torch.tensor(fine_eval, device=device)
 
         if gp:
             mean_surg, var_surg = surrogate.prediction(theta.reshape(1,-1),var=True)
             var_surg = torch.diag(var_surg)
-            # diff = (fine_pred.reshape(-1, 1) - mean_surg.reshape(-1, 1))
-            # k_inv_g = torch.linalg.solve(var_surg,diff) 
-            # error = torch.matmul(diff.T, k_inv_g)
 
         else:
             data = torch.cat([observation_locations, theta.repeat(observation_locations.size(0), 1)], dim=1).float()
             mean_surg, var_surg = surrogate(data.float())
             mean_surg = mean_surg.view(-1, 1).detach()
             var_surg = var_surg[:, :, 0].view(-1, 1).detach()
-            # error = torch.sum(((fine_pred.reshape(-1, 1) - surg_mu.reshape(-1, 1)) ** 2) / surg_sigma)
         
         error_mean = torch.linalg.norm((fine_pred.reshape(-1,1)-mean_surg.reshape(-1,1)),ord=2)**2
         error_var = torch.sum(var_surg)
         error = torch.sqrt(error_mean + error_var)
-        #error = torch.sqrt(error_mean)
         total_error += error.item()
 
     return total_error / samples.shape[0]

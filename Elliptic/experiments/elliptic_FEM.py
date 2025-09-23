@@ -31,8 +31,8 @@ def elliptic_experiment():
 
     config.proposal = "random_walk"
     config.proposal_variance = 1e-2
-    config.uniform_limit = 1
-    config.samples = 1_000_000
+    config.uniform_limit = 2
+    config.samples = 1_500_000
     config.FEM_h = 50
 
     return config
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", action="store_true", help="Verbose")
     parser.add_argument("--kl", type=int,default=2,help="KL_expansion")
     parser.add_argument("--noise_level", type=float,default=1e-4,help="Noise level for IP")
-    parser.add_argument("--proposal", type=str,default="pCN",help="MCMC Proposal")
+    parser.add_argument("--proposal", type=str,default="random_walk",help="MCMC Proposal")
     parser.add_argument("--repeat", type=int,default=4, help="Repeat MCMC ntimes")
 
     args = parser.parse_args()

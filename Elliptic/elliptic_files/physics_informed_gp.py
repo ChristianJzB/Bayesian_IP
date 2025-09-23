@@ -178,7 +178,7 @@ class EllipticPIGP:
         self.finder = RootFinder(lam, self.parameter_dim)
         self.roots = torch.tensor(self.finder.find_roots(), dtype=torch.float64)
 
-        self.kernel_parameter = SquaredExponential(*sigma_l_parameters,device=self.device)
+        self.kernel_parameter = MaternKernel(*sigma_l_parameters,device=self.device)
         self.kernel_spatial = MaternKernel(*sigma_l_spatial,device=self.device)
         
         self.reg_matrix = reg_matrix
@@ -436,7 +436,7 @@ class PIGP:
         self.n_parameter_obs = self.parameters_data.shape[0]
         self.parameter_dim = self.parameters_data.shape[-1]
 
-        self.kernel_parameter = SquaredExponential(*sigma_l_parameters,device=self.device)
+        self.kernel_parameter = MaternKernel(*sigma_l_parameters,device=self.device)
         self.kernel_spatial = MaternKernel(*sigma_l_spatial,device=self.device)
         
         self.reg_matrix = reg_matrix
@@ -444,8 +444,8 @@ class PIGP:
     def train_gp(self):
           self.g_trained = self.g_training()
           self.kuf = self.kernel_uf(self.parameters_data,self.x_sol_data)
-          self.cov_matrix, self.kuu, self.kug = self.informed_kernel(self.parameters_data, self.parameters_data)
-          self.invk_g = self.kernel_inverse(self.cov_matrix, self.g_trained)
+          self.cov_matrix, self.L,self.kuu, self.kug = self.informed_kernel(self.parameters_data, self.parameters_data)
+          self.invk_g = self.kernel_inverse(self.L, self.g_trained)
 
     def exp_kl_eval(self, theta, x):
         """Define the likelihood function for the coarse model. Must be overridden."""
@@ -546,15 +546,19 @@ class PIGP:
         bottom = torch.cat([Kuf.T, Kgf.T, Kff], dim=1)
         cov = torch.cat([top, middle, bottom], dim=0)
 
-        return cov + self.reg_matrix * torch.eye(cov.shape[0], dtype=torch.float64, device=self.device),kuu,kug
+        cov = cov + self.reg_matrix * torch.eye(cov.shape[0], dtype=torch.float64, device=self.device)
+        L = torch.linalg.cholesky(cov)
+        return cov,L,kuu,kug
     
     def g_training(self):
         y_bc_n = self.y_bc.repeat((self.n_parameter_obs,1))
         f_source_n = self.source_func_f_x.repeat((self.n_parameter_obs,1))
         return torch.cat([self.solutions_data.view(-1, 1), y_bc_n, f_source_n])
 
-    def kernel_inverse(self, cov_matrix, Y):
-        return torch.linalg.solve(cov_matrix, Y)
+    # def kernel_inverse(self, cov_matrix, Y):
+    #     return torch.linalg.solve(cov_matrix, Y)
+    def kernel_inverse(self, L, Y):
+         return  torch.cholesky_solve(Y, L)
 
     def marginal_likelihood(self, sigma_spatial, l_spatial, sigma_param, l_param):
         # Update kernel parameters
@@ -563,17 +567,17 @@ class PIGP:
 
         # Recompute the covariance matrix
         self.kuf = self.kernel_uf(self.parameters_data,self.x_sol_data)
-        self.cov_matrix, _, _ = self.informed_kernel(self.parameters_data, self.parameters_data)
+        self.cov_matrix,self.L, _, _ = self.informed_kernel(self.parameters_data, self.parameters_data)
         
         # Compute Cholesky
-        L = torch.linalg.cholesky(self.cov_matrix)
+        #L = torch.linalg.cholesky(self.cov_matrix)
 
         # Solve K^{-1}y
         y = self.g_trained
-        alpha =self.kernel_inverse(self.cov_matrix,y)
+        alpha =self.kernel_inverse(self.L,y)
 
         # Log determinant
-        logdet_K = 2.0 * torch.sum(torch.log(torch.diag(L)))
+        logdet_K = 2.0 * torch.sum(torch.log(torch.diag(self.L)))
         return -0.5 * ((y.T @ alpha).squeeze() + logdet_K + y.shape[0] * np.log(2 * np.pi))
     
 
@@ -641,13 +645,14 @@ class PIGP:
         if var:
             kernel_spatial = self.kuu if x_test is None else  self.kernel_spatial.covariance(x_test, x_test)
             kernel_param = self.kernel_parameter.covariance(theta_test, theta_test)
-            kinv_y = self.kernel_inverse(self.cov_matrix, matrix_test.T)
+            #kinv_y = self.kernel_inverse(self.cov_matrix, matrix_test.T)
+            kinv_y = self.kernel_inverse(self.L, matrix_test.T)
             cov = torch.kron(kernel_param, kernel_spatial) - matrix_test @ kinv_y
             return marginal_mean, cov
         return marginal_mean
     
 class Elliptic1DPIGP(PIGP):
-    def __init__(self, data_training, reg_matrix=1e-8, lam=1/4,sigma_l_parameters=(1, 1), sigma_l_spatial=(1, 1),device = "cpu"):
+    def __init__(self, data_training, reg_matrix=1e-2, lam=1/4,sigma_l_parameters=(1, 1), sigma_l_spatial=(1, 1),device = "cpu"):
         super(Elliptic1DPIGP, self).__init__(data_training = data_training , reg_matrix=reg_matrix,
                              sigma_l_parameters=sigma_l_parameters, sigma_l_spatial=sigma_l_spatial,device=device)
         # Roots for KL
